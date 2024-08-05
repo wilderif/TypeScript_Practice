@@ -1,20 +1,22 @@
-function add(n1: number, n2: number, showResult: boolean, phrase: string) {
-  const result = n1 + n2;
-  if (showResult) {
-    console.log(phrase, result);
-  } else {
-    return result;
-  }
-}
+const person: {
+  name: string;
+  age: number;
+  hobbies: string[];
+  role: [number, string];
+} = {
+  name: "Kim",
+  age: 30,
+  hobbies: ["Sports", "Cooking"],
+  role: [2, "author"],
+};
 
-// const number1 = 5;
-let number1: number;
-number1 = 5;
-const number2 = 2.8;
-const printResult = true;
-// const printResult = false;
-// const resultPhrase = "Result is: ";
-let resultPhrase = "Result is: ";
+let favoriteActivities: any[];
+favoriteActivities = ["Sports", 1];
 
-const result = add(number1, number2, printResult, resultPhrase);
-console.log(result);
+console.log(person.name);
+
+person.hobbies.forEach((val) => {
+  console.log(val);
+});
+
+// person.role.push("test");
