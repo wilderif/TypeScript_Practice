@@ -1,39 +1,38 @@
-// const person: {
-//   name: string;
-//   age: number;
-//   hobbies: string[];
-//   role: [number, string];
-// } = {
-//   name: "Kim",
-//   age: 30,
-//   hobbies: ["Sports", "Cooking"],
-//   role: [2, "author"],
-// };
+type Combinable = number | string;
+type ConversionDescriptor = "as-number" | "as-text";
 
-enum Role {
-  ADMIN = 5,
-  READ_ONLY = 100,
-  AUTHOR,
+function combine(
+  input1: number | string,
+  input2: Combinable,
+  resultConversion: ConversionDescriptor
+) {
+  let result: number | string;
+
+  if (
+    (typeof input1 === "number" && typeof input2 === "number") ||
+    resultConversion === "as-number"
+  ) {
+    result = +input1 + +input2;
+  } else {
+    result = input1.toString() + input2.toString();
+  }
+
+  return result;
+
+  // if (resultConversion === 'as-number') {
+  //   return +result;
+  // } else {
+  //   return result.toString();
+  // }
 }
 
-const person = {
-  name: "Kim",
-  age: 30,
-  hobbies: ["Sports", "Cooking"],
-  role: Role.ADMIN,
-};
+const combinedAges = combine(30, 26, "as-number");
+console.log(combinedAges);
 
-let favoriteActivities: any[];
-favoriteActivities = ["Sports", 1];
+const combinedStringAges = combine("30", "26", "as-number");
+console.log(combinedStringAges);
 
-console.log(person.name);
+const combinedNames = combine("Max", "Anna", "as-text");
+console.log(combinedNames);
 
-person.hobbies.forEach((val) => {
-  console.log(val);
-});
-
-// person.role.push("test");
-
-if (person.role === Role.ADMIN) {
-  console.log("is ADMIN");
-}
+console.log("test run");
