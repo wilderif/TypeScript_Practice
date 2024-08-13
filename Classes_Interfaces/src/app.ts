@@ -1,7 +1,7 @@
 class Department {
   // private readonly id: string;
   // private name: string;
-  private employees: string[] = [];
+  protected employees: string[] = [];
 
   constructor(private readonly id: string, public name: string) {
     // this.id = id;
@@ -22,16 +22,56 @@ class Department {
   }
 }
 
-const accounting = new Department("d1", "Accounting");
+class ITDepartment extends Department {
+  admins: string[];
+  constructor(id: string, admins: string[]) {
+    super(id, "IT");
+    this.admins = admins;
+  }
+}
 
+class AccountingDepartment extends Department {
+  constructor(id: string, private reports: string[]) {
+    super(id, "Accounting");
+    this.reports = reports;
+  }
+
+  addEmployee(name: string) {
+    if (name === "Max") {
+      return;
+    }
+    this.employees.push(name);
+  }
+
+  addReport(text: string) {
+    this.reports.push(text);
+  }
+
+  printReports() {
+    console.log(this.reports);
+  }
+}
+
+const accounting = new Department("d1", "Accounting");
 accounting.addEmployee("Max");
 accounting.addEmployee("Manu");
-
 // accounting.employees[2] = "Anna";
-
-console.log(accounting);
 accounting.describe();
 accounting.printEmployeeInformation();
+console.log(accounting);
 
 // const accountingCopy = { describe: accounting.describe, name: "DUMMY" };
 // accountingCopy.describe();
+
+const it = new ITDepartment("d2", ["Max"]);
+it.addEmployee("Max");
+it.addEmployee("Manu");
+it.describe();
+console.log(it);
+
+const accounting2 = new AccountingDepartment("d3", []);
+accounting2.addReport("Something went wrong...");
+accounting2.printReports();
+accounting2.addEmployee("Max");
+accounting2.addEmployee("Manu");
+console.log(accounting2);
