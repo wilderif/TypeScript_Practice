@@ -35,6 +35,23 @@ function add(a: Combinable, b: Combinable) {
 const result = add("Max", " Schwarz");
 result.split(" ");
 
+const fetchedUserData = {
+  id: "u1",
+  name: "Max",
+  // job: { title: "CEO", description: "My own company" },
+} as {
+  id: string;
+  name: string;
+  job?: { title: string; description: string };
+};
+
+console.log(fetchedUserData?.job?.title);
+
+const userInput = null;
+const storedData = userInput ?? "DEFAULT";
+
+console.log(storedData);
+
 type UnknownEmployee = Employee | Admin;
 
 function printEmployeeInformation(emp: UnknownEmployee) {
@@ -114,11 +131,11 @@ moveAninal(a2);
 // const userInputElement = <HTMLInputElement>(
 //   document.getElementById("user-input")!
 // );
-const userInputElement = document.getElementById("user-input");
+// const userInputElement = document.getElementById("user-input");
 
-if (userInputElement) {
-  (userInputElement as HTMLInputElement).value = "Hi there!";
-}
+// if (userInputElement) {
+//   (userInputElement as HTMLInputElement).value = "Hi there!";
+// }
 
 interface ErrorContainer {
   [prop: string]: string;
